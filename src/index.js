@@ -66,6 +66,7 @@ function Header() {
 }
 
 function Menu() {
+  // const pizzas = [];
   const pizzas = pizzaData;
 
   const numPizzas = pizzas.length;
@@ -73,12 +74,14 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       {/* Show me pizzas only when they are available */}
-      {numPizzas > 0 && (
+      {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later</p>
       )}
     </main>
   );
@@ -105,11 +108,15 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
-          <p>We're open until {closeHour}:00. Come visit us or order online</p>
+          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          Our restaurant opens between {openHour}:00 - {closeHour}:00
+        </p>
       )}
     </footer>
   );
